@@ -16,4 +16,6 @@ android {
 }
 
 dependencies {
+    // Ktor
+    implementation(libs.bundles.ktor)
 }
