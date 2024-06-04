@@ -1,6 +1,6 @@
 [versions]
 agp = "8.3.2"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -18,6 +18,13 @@ material = "1.10.0"
 #ktor
 ktor = "2.3.11"
 okhttp = "4.11.0"
+
+#hilt
+hilt = "2.48"
+hiltWithOtherLibs = "1.1.0"
+
+#ksp
+ksp = "1.9.10-1.0.13"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +53,16 @@ ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlin
 ktor-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 
+#hilt
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltWithOtherLibs" }
+hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltWithOtherLibs" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
 [bundles]
 ktor = [
     "ktor-client-core", "ktor-client-okhttp", "ktor-logging", "ktor-serialization-json",
@@ -57,5 +74,5 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-
-
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
