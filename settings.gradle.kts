@@ -24,3 +24,5 @@ rootProject.name = "Calories"
 include(":app")
 include(":core:remote")
 include(":feature:calories")
+include(":core:domain")
+include(":core:data")
