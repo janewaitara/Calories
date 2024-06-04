@@ -2,4 +2,17 @@
 plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
+    alias(libs.plugins.ktlint)
+}
+
+allprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    ktlint {
+        android.set(false)
+        verbose.set(false)
+        filter {
+            exclude { element -> element.file.path.contains("generated/") }
+        }
+        disabledRules.set(setOf("no-wildcard-imports"))
+    }
 }
