@@ -1,4 +1,4 @@
-package com.mumbicodes.calories.ui.theme
+package com.mumbicodes.ui.presentation.theme
 
 import android.app.Activity
 import android.os.Build

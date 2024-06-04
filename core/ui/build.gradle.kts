@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("calories.android.hilt")
 }
 
 android {
-    namespace = "com.mumbicodes.calories"
+    namespace = "com.mumbicodes.ui"
     compileSdk = 34
 
     defaultConfig {
@@ -41,20 +40,14 @@ android {
 
 dependencies {
 
-    implementation(project(":core:ui"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-
-    // Hilt
-    implementation(libs.hilt.navigation)
 }
