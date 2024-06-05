@@ -4,6 +4,7 @@ import com.mumbicodes.data.domain.model.Calorie
 
 data class CaloriesScreenState(
     val searchParam: String = "",
+    val recentSearches: List<String> = emptyList(),
     val caloriesSearchResults: ListState<List<Calorie>> = ListState.Idle
 )
 

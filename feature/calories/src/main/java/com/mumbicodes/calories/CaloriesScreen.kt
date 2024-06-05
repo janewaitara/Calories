@@ -1,5 +1,6 @@
 package com.mumbicodes.calories
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -19,6 +21,8 @@ import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -125,6 +129,32 @@ fun CaloriesScreenContent(
             },
             textStyle = MaterialTheme.typography.bodySmall
         )
+
+        AnimatedVisibility(visible = state.recentSearches.isNotEmpty()) {
+            LazyRow(horizontalArrangement = Arrangement.spacedBy(Space8dp)) {
+                items(state.recentSearches) { searchParam ->
+                    FilterChip(
+                        selected = state.searchParam == searchParam,
+                        onClick = {
+                            onSearchParamChanged(searchParam)
+                            onSearchClicked()
+                        },
+                        label = {
+                            Text(
+                                modifier = Modifier.alpha(0.8f),
+                                text = searchParam,
+                                color = MaterialTheme.colorScheme.normalText,
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.onSecondary,
+                            selectedLabelColor = MaterialTheme.colorScheme.surface
+                        )
+                    )
+                }
+            }
+        }
 
         Spacer(Modifier.height(Space16dp))
 

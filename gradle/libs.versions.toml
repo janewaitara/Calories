@@ -29,6 +29,9 @@ ksp = "1.9.10-1.0.13"
 #kotlinx-serialization
 kotlinx-serialization = "1.6.3"
 
+# datastore
+androidx-datastore = "1.1.1"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -65,6 +68,9 @@ hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.re
 
 # kotlin serialization
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+# androidx
+androidx-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }

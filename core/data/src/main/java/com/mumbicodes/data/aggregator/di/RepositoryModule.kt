@@ -2,6 +2,7 @@ package com.mumbicodes.data.aggregator.di
 
 import com.mumbicodes.data.aggregator.repositories.CaloriesRepositoryImpl
 import com.mumbicodes.data.domain.repositories.CaloriesRepository
+import com.mumbicodes.local.preferences.RecentSearchesPreferences
 import com.mumbicodes.remote.api.CaloriesSearchAPI
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,9 @@ import dagger.hilt.components.SingletonComponent
 object RepositoryModule {
 
     @Provides
-    fun providesCaloriesRepository(caloriesSearchAPI: CaloriesSearchAPI): CaloriesRepository =
-        CaloriesRepositoryImpl(caloriesSearchAPI)
+    fun providesCaloriesRepository(
+        caloriesSearchAPI: CaloriesSearchAPI,
+        recentSearchesPreferences: RecentSearchesPreferences
+    ): CaloriesRepository =
+        CaloriesRepositoryImpl(caloriesSearchAPI, recentSearchesPreferences)
 }

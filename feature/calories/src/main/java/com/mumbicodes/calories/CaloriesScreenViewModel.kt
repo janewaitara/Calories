@@ -7,6 +7,7 @@ import com.mumbicodes.data.domain.repositories.CaloriesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,6 +19,22 @@ class CaloriesScreenViewModel @Inject constructor(
 
     private var _screenState: MutableStateFlow<CaloriesScreenState> = MutableStateFlow(CaloriesScreenState())
     val screenState = _screenState.asStateFlow()
+
+    init {
+        getRecentSearches()
+    }
+
+    private fun getRecentSearches() {
+        viewModelScope.launch {
+            caloriesRepository.recentSearches.collectLatest { recentSearches ->
+                _screenState.update {
+                    it.copy(
+                        recentSearches = recentSearches
+                    )
+                }
+            }
+        }
+    }
 
     fun updateSearchParam(query: String) {
         _screenState.update {

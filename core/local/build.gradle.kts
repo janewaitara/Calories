@@ -2,10 +2,11 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("calories.android.hilt")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.mumbicodes.data"
+    namespace = "com.mumbicodes.local"
     compileSdk = 34
 
     defaultConfig {
@@ -24,10 +25,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:remote"))
-    implementation(project(":core:local"))
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // androidx-datastore
+    implementation(libs.androidx.datastore)
+
+    // Kotlin serialization
+    implementation(libs.kotlinx.serialization.json)
 }
