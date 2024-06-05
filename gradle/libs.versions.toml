@@ -7,7 +7,7 @@ junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 androidxLifecycle = "2.7.0"
 activityCompose = "1.8.2"
-composeBom = "2023.08.00"
+composeBom = "2024.02.00"
 
 #Ktlint
 ktlint = "11.4.0"
@@ -31,6 +31,9 @@ kotlinx-serialization = "1.6.3"
 
 # datastore
 androidx-datastore = "1.1.1"
+
+# accompanist
+accompanist = "0.34.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -75,6 +78,9 @@ androidx-datastore = { module = "androidx.datastore:datastore-preferences", vers
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+# accompanist
+accompanist = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
 
 [bundles]
 ktor = [

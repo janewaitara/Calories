@@ -32,6 +32,8 @@ class RecentSearchesPreferencesImpl @Inject constructor(
      * Adds a new search param
      * when the number of params is 10, remove a param to accommodate the new one using FIFO
      * when a param is added again, remove it from the previous index and add afresh
+     *
+     * todo handle the case where the list.count == 10 while the list also having the search param
      * */
     override suspend fun addSearchParam(searchParam: String) {
         val entity = RecentSearch(searchParam = searchParam)

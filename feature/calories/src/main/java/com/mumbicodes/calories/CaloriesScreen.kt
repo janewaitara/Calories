@@ -15,6 +15,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material.icons.rounded.Search
@@ -36,7 +38,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -52,14 +56,16 @@ import com.mumbicodes.ui.presentation.theme.strongText
 
 @Composable
 fun CaloriesScreenRoute(
-    viewmodel: CaloriesScreenViewModel = hiltViewModel()
+    viewmodel: CaloriesScreenViewModel = hiltViewModel(),
+    onCalorieClicked: () -> Unit
 ) {
     val screenState = viewmodel.screenState.collectAsStateWithLifecycle().value
 
     CaloriesScreenContent(
         state = screenState,
         onSearchParamChanged = viewmodel::updateSearchParam,
-        onSearchClicked = viewmodel::searchCalories
+        onSearchClicked = viewmodel::searchCalories,
+        onCalorieClicked = onCalorieClicked
     )
 }
 
@@ -69,8 +75,11 @@ fun CaloriesScreenContent(
     modifier: Modifier = Modifier,
     state: CaloriesScreenState,
     onSearchParamChanged: (String) -> Unit,
-    onSearchClicked: () -> Unit
+    onSearchClicked: () -> Unit,
+    onCalorieClicked: () -> Unit
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -119,7 +128,10 @@ fun CaloriesScreenContent(
                         disabledContentColor = MaterialTheme.colorScheme.primaryContainer
                     ),
                     enabled = state.searchParam.isNotBlank() or (state.caloriesSearchResults !is ListState.Loading),
-                    onClick = onSearchClicked
+                    onClick = {
+                        keyboardController?.hide()
+                        onSearchClicked()
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Search,
@@ -127,7 +139,14 @@ fun CaloriesScreenContent(
                     )
                 }
             },
-            textStyle = MaterialTheme.typography.bodySmall
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+            textStyle = MaterialTheme.typography.bodySmall,
+            keyboardActions = KeyboardActions(
+                onSearch = {
+                    keyboardController?.hide()
+                    onSearchClicked()
+                }
+            )
         )
 
         AnimatedVisibility(visible = state.recentSearches.isNotEmpty()) {
@@ -215,7 +234,8 @@ fun CaloriesScreenContent(
                             items(results.data.data) { calorie ->
                                 CalorieComponent(
                                     modifier = Modifier,
-                                    calorie = calorie
+                                    calorie = calorie,
+                                    onCalorieClicked = onCalorieClicked
                                 )
                             }
                         }

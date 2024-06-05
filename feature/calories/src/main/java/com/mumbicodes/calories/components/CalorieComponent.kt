@@ -1,6 +1,7 @@
 package com.mumbicodes.calories.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -33,12 +34,14 @@ import com.mumbicodes.ui.presentation.theme.strongText
 @Composable
 fun CalorieComponent(
     modifier: Modifier,
-    calorie: Calorie
+    calorie: Calorie,
+    onCalorieClicked: () -> Unit
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .background(color = MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(Space4dp))
+            .clickable { onCalorieClicked() }
             .padding(Space16dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,

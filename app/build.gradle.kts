@@ -55,6 +55,7 @@ dependencies {
 
     implementation(project(":core:ui"))
     implementation(project(":feature:calories"))
+    implementation(project(":feature:food-details"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -74,4 +75,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.navigation)
+
+    // Accompanist
+    implementation(libs.accompanist)
 }
