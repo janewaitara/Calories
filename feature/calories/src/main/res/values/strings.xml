@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_heading">Calories</string>
+    <string name="search_placeHolder">Search calories</string>
+    <string name="search_results">Search results</string>
+    <string name="calories_count"> %s kcal </string>
+    <string name="fat">g Fats</string>
+    <string name="proteins">g Proteins</string>
+    <string name="carbs">g Carbs</string>
+
+    <string name="empty_state_header">Let\'s get started</string>
+    <string name="empty_state_text">Search for a food to see their calories</string>
+    <string name="empty_state_content_desc">Search icon</string>
+
+    <string name="no_results_header">Ooops</string>
+    <string name="no_results_text">Unfortunately no results were found for %s</string>
+    <string name="no_results_content_desc">Not results</string>
+
+    <string name="error_state_header">A failure occurred</string>
+    <string name="error_state_content_desc">Search failed icon</string>
+</resources>
