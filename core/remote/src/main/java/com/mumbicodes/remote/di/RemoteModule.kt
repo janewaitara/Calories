@@ -1,5 +1,6 @@
 package com.mumbicodes.remote.di
 
+import com.mumbicodes.remote.BuildConfig
 import com.mumbicodes.remote.api.CaloriesSearchAPI
 import com.mumbicodes.remote.api.CaloriesSearchApiImpl
 import dagger.Module
@@ -36,7 +37,7 @@ object RemoteModule {
         }
         install(DefaultRequest) {
             header(HttpHeaders.ContentType, ContentType.Application.Json)
-            header("x-api-key", "8/MqBej61B6ALLuEf7cIWg==tJbmaSTQHGZd6wLJ")
+            header("x-api-key", BuildConfig.key)
         }
     }
 
