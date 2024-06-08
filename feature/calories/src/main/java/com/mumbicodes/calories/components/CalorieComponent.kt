@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import com.mumbicodes.calories.R
-import com.mumbicodes.data.domain.model.Calorie
+import com.mumbicodes.domain.model.Calorie
 import com.mumbicodes.ui.presentation.theme.Space12dp
 import com.mumbicodes.ui.presentation.theme.Space16dp
 import com.mumbicodes.ui.presentation.theme.Space24dp
@@ -34,7 +34,7 @@ import com.mumbicodes.ui.presentation.theme.strongText
 @Composable
 fun CalorieComponent(
     modifier: Modifier,
-    calorie: Calorie,
+    calorie: com.mumbicodes.domain.model.Calorie,
     onCalorieClicked: () -> Unit
 ) {
     Card(

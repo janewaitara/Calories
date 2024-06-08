@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mumbicodes.calories.CaloriesScreenViewModel
-import com.mumbicodes.data.domain.model.Calorie
+import com.mumbicodes.domain.model.Calorie
 import com.mumbicodes.food_details.R
 import com.mumbicodes.ui.presentation.theme.Space24dp
 import com.mumbicodes.ui.presentation.theme.Space8dp
@@ -34,7 +34,7 @@ fun FoodDetailsScreenRoute(
 @Composable
 fun FoodDetailsContent(
     modifier: Modifier = Modifier,
-    calorie: Calorie
+    calorie: com.mumbicodes.domain.model.Calorie
 ) {
     Column(
         modifier = modifier

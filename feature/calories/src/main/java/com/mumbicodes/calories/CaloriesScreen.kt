@@ -45,7 +45,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mumbicodes.calories.components.CalorieComponent
 import com.mumbicodes.calories.components.SectionSlot
-import com.mumbicodes.data.domain.model.Calorie
+import com.mumbicodes.domain.model.Calorie
 import com.mumbicodes.ui.presentation.theme.Space12dp
 import com.mumbicodes.ui.presentation.theme.Space16dp
 import com.mumbicodes.ui.presentation.theme.Space4dp
@@ -79,7 +79,7 @@ fun CaloriesScreenContent(
     state: CaloriesScreenState,
     onSearchParamChanged: (String) -> Unit,
     onSearchClicked: () -> Unit,
-    onCalorieClicked: (Calorie) -> Unit
+    onCalorieClicked: (com.mumbicodes.domain.model.Calorie) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 

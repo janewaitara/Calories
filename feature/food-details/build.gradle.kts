@@ -32,7 +32,7 @@ android {
 dependencies {
 
     implementation(project(":feature:calories"))
-    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
     implementation(project(":core:ui"))
 
     implementation(libs.androidx.core.ktx)

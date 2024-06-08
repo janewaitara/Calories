@@ -1,6 +1,6 @@
 package com.mumbicodes.data.aggregator.mappers
 
-import com.mumbicodes.data.domain.model.Calorie
+import com.mumbicodes.domain.model.Calorie
 import com.mumbicodes.remote.dto.CaloriesDTO
 
 fun CaloriesDTO.toDomain() = Calorie(

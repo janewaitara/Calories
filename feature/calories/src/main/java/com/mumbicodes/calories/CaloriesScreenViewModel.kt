@@ -2,9 +2,9 @@ package com.mumbicodes.calories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mumbicodes.data.domain.model.Calorie
-import com.mumbicodes.data.domain.model.DataResult
-import com.mumbicodes.data.domain.repositories.CaloriesRepository
+import com.mumbicodes.domain.model.Calorie
+import com.mumbicodes.domain.model.DataResult
+import com.mumbicodes.domain.repositories.CaloriesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,7 +50,7 @@ class CaloriesScreenViewModel @Inject constructor(
         }
     }
 
-    private fun getRecentSearches() {
+    fun getRecentSearches() {
         viewModelScope.launch {
             caloriesRepository.recentSearches.collectLatest { recentSearches ->
                 _screenState.update {

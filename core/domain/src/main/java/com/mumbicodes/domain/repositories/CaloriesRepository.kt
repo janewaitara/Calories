@@ -1,7 +1,7 @@
-package com.mumbicodes.data.domain.repositories
+package com.mumbicodes.domain.repositories
 
-import com.mumbicodes.data.domain.model.Calorie
-import com.mumbicodes.data.domain.model.DataResult
+import com.mumbicodes.domain.model.Calorie
+import com.mumbicodes.domain.model.DataResult
 import kotlinx.coroutines.flow.Flow
 
 interface CaloriesRepository {

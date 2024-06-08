@@ -42,7 +42,9 @@ android {
 dependencies {
 
     implementation(project(":core:ui"))
+    implementation(project(":core:domain"))
     implementation(project(":core:data"))
+    implementation(project(":core:testing"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -58,4 +60,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.navigation)
+
+    // Coroutine
+    testImplementation(libs.kotlinx.coroutines.test)
 }

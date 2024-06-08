@@ -1,4 +1,4 @@
-package com.mumbicodes.data.domain.model
+package com.mumbicodes.domain.model
 
 data class Calorie(
     val name: String,

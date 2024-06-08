@@ -1,7 +1,7 @@
 package com.mumbicodes.data.aggregator.di
 
 import com.mumbicodes.data.aggregator.repositories.CaloriesRepositoryImpl
-import com.mumbicodes.data.domain.repositories.CaloriesRepository
+import com.mumbicodes.domain.repositories.CaloriesRepository
 import com.mumbicodes.local.preferences.RecentSearchesPreferences
 import com.mumbicodes.remote.api.CaloriesSearchAPI
 import dagger.Module
