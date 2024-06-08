@@ -2,6 +2,7 @@ package com.mumbicodes.calories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mumbicodes.data.domain.model.Calorie
 import com.mumbicodes.data.domain.model.DataResult
 import com.mumbicodes.data.domain.repositories.CaloriesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +21,33 @@ class CaloriesScreenViewModel @Inject constructor(
     private var _screenState: MutableStateFlow<CaloriesScreenState> = MutableStateFlow(CaloriesScreenState())
     val screenState = _screenState.asStateFlow()
 
+    private var _calorieClicked: MutableStateFlow<Calorie> = MutableStateFlow(
+        Calorie(
+            name = "Apple",
+            calories = 95.0,
+            servingSizeGrams = 130.0,
+            fatTotalGrams = 0.3,
+            fatSaturatedGrams = 0.0,
+            proteinGrams = 0.3,
+            sodiumMilligrams = 0.0,
+            potassiumMilligrams = 0.0,
+            cholesterolMilligrams = 0.0,
+            carbohydratesTotalGrams = 25.0,
+            fiberGrams = 4.0,
+            sugarGrams = 19.0
+        )
+    )
+    val calorieClicked
+        get() = _calorieClicked.asStateFlow()
+
     init {
         getRecentSearches()
+    }
+
+    fun updateCalorie(calorie: Calorie) {
+        _calorieClicked.update {
+            calorie
+        }
     }
 
     private fun getRecentSearches() {
@@ -52,13 +78,16 @@ class CaloriesScreenViewModel @Inject constructor(
     }
 
     fun searchCalories() {
-        if (screenState.value.searchParam.isNotEmpty()) {
-            _screenState.update {
-                it.copy(
-                    caloriesSearchResults = ListState.Loading
-                )
-            }
+        if (screenState.value.searchParam.isEmpty()) {
+            return
         }
+
+        _screenState.update {
+            it.copy(
+                caloriesSearchResults = ListState.Loading
+            )
+        }
+
         viewModelScope.launch {
             when (val results = caloriesRepository.searchCalories(screenState.value.searchParam)) {
                 is DataResult.Error -> {

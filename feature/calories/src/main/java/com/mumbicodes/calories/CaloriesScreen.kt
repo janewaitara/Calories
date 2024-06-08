@@ -42,10 +42,10 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mumbicodes.calories.components.CalorieComponent
 import com.mumbicodes.calories.components.SectionSlot
+import com.mumbicodes.data.domain.model.Calorie
 import com.mumbicodes.ui.presentation.theme.Space12dp
 import com.mumbicodes.ui.presentation.theme.Space16dp
 import com.mumbicodes.ui.presentation.theme.Space4dp
@@ -56,7 +56,7 @@ import com.mumbicodes.ui.presentation.theme.strongText
 
 @Composable
 fun CaloriesScreenRoute(
-    viewmodel: CaloriesScreenViewModel = hiltViewModel(),
+    viewmodel: CaloriesScreenViewModel,
     onCalorieClicked: () -> Unit
 ) {
     val screenState = viewmodel.screenState.collectAsStateWithLifecycle().value
@@ -65,7 +65,10 @@ fun CaloriesScreenRoute(
         state = screenState,
         onSearchParamChanged = viewmodel::updateSearchParam,
         onSearchClicked = viewmodel::searchCalories,
-        onCalorieClicked = onCalorieClicked
+        onCalorieClicked = { calorie ->
+            viewmodel.updateCalorie(calorie)
+            onCalorieClicked()
+        }
     )
 }
 
@@ -76,7 +79,7 @@ fun CaloriesScreenContent(
     state: CaloriesScreenState,
     onSearchParamChanged: (String) -> Unit,
     onSearchClicked: () -> Unit,
-    onCalorieClicked: () -> Unit
+    onCalorieClicked: (Calorie) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -127,7 +130,7 @@ fun CaloriesScreenContent(
                         disabledContainerColor = MaterialTheme.colorScheme.onPrimary,
                         disabledContentColor = MaterialTheme.colorScheme.primaryContainer
                     ),
-                    enabled = state.searchParam.isNotBlank() or (state.caloriesSearchResults !is ListState.Loading),
+                    enabled = state.searchParam.isNotEmpty() && (state.caloriesSearchResults !is ListState.Loading),
                     onClick = {
                         keyboardController?.hide()
                         onSearchClicked()
@@ -235,7 +238,7 @@ fun CaloriesScreenContent(
                                 CalorieComponent(
                                     modifier = Modifier,
                                     calorie = calorie,
-                                    onCalorieClicked = onCalorieClicked
+                                    onCalorieClicked = { onCalorieClicked(calorie) }
                                 )
                             }
                         }

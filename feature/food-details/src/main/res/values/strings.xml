@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="calories">Calories</string>
+    <string name="calories_unit"> %s kcal </string>
+    <string name="unit">%s g</string>
+    <string name="fat">Fats</string>
+    <string name="proteins">Proteins</string>
+    <string name="carbs">Carbohydrates</string>
+    <string name="sodium">Sodium</string>
+    <string name="potassium">Potassium</string>
+    <string name="cholesterol">Cholesterol</string>
+</resources>
