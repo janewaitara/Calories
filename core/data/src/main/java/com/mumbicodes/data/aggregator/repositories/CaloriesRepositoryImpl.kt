@@ -34,7 +34,7 @@ class CaloriesRepositoryImpl @Inject constructor(
             }
 
             is NetworkResult.Error ->
-                DataResult.Error(errorMessage = networkResult.message, exception = networkResult.exception)
+                DataResult.Error(errorMessage = networkResult.message)
         }
     }
 }

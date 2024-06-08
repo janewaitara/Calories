@@ -7,5 +7,5 @@ suspend fun <T> safeApiCall(
     val data = block.invoke()
     NetworkResult.Success(data)
 } catch (e: Exception) {
-    NetworkResult.Error(message = e.localizedMessage ?: errorMessage, exception = e)
+    NetworkResult.Error(message = e.localizedMessage ?: errorMessage)
 }

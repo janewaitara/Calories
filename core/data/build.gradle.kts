@@ -27,6 +27,10 @@ dependencies {
     implementation(project(":core:remote"))
     implementation(project(":core:local"))
 
+    // coroutines
+    implementation(libs.kotlinx.coroutines)
+    testImplementation(libs.kotlinx.coroutines.test)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
