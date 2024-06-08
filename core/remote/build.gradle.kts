@@ -22,7 +22,8 @@ android {
         buildConfig = true
     }
 
-    val key: String = gradleLocalProperties(rootDir, providers).getProperty("key")
+    // return empty string incase the key is not set
+    val key: String = gradleLocalProperties(rootDir, providers).getProperty("key") ?: ""
 
     buildTypes {
         getByName("debug") {
