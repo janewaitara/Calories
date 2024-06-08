@@ -34,7 +34,7 @@ fun FoodDetailsScreenRoute(
 @Composable
 fun FoodDetailsContent(
     modifier: Modifier = Modifier,
-    calorie: com.mumbicodes.domain.model.Calorie
+    calorie: Calorie
 ) {
     Column(
         modifier = modifier

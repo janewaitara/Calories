@@ -79,7 +79,7 @@ fun CaloriesScreenContent(
     state: CaloriesScreenState,
     onSearchParamChanged: (String) -> Unit,
     onSearchClicked: () -> Unit,
-    onCalorieClicked: (com.mumbicodes.domain.model.Calorie) -> Unit
+    onCalorieClicked: (Calorie) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 

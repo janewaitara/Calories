@@ -5,7 +5,7 @@ import com.mumbicodes.domain.model.Calorie
 data class CaloriesScreenState(
     val searchParam: String = "",
     val recentSearches: List<String> = emptyList(),
-    val caloriesSearchResults: ListState<List<com.mumbicodes.domain.model.Calorie>> = ListState.Idle
+    val caloriesSearchResults: ListState<List<Calorie>> = ListState.Idle
 )
 
 sealed interface ListState<out T> {

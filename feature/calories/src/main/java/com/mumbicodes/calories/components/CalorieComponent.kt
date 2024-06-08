@@ -34,7 +34,7 @@ import com.mumbicodes.ui.presentation.theme.strongText
 @Composable
 fun CalorieComponent(
     modifier: Modifier,
-    calorie: com.mumbicodes.domain.model.Calorie,
+    calorie: Calorie,
     onCalorieClicked: () -> Unit
 ) {
     Card(
