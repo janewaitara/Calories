@@ -39,6 +39,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
@@ -91,7 +92,9 @@ fun CaloriesScreenContent(
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("Calories heading"),
                 text = stringResource(R.string.screen_heading),
                 style = MaterialTheme.typography.titleLarge
             )
@@ -100,6 +103,7 @@ fun CaloriesScreenContent(
 
         TextField(
             modifier = Modifier
+                .testTag("Search field")
                 .fillMaxWidth()
                 .padding(vertical = Space8dp)
                 .clip(RoundedCornerShape(Space4dp))
@@ -183,6 +187,7 @@ fun CaloriesScreenContent(
         when (val results = state.caloriesSearchResults) {
             is ListState.Error -> {
                 SectionSlot(
+                    modifier = Modifier.testTag("Error state"),
                     icon = Icons.Rounded.Warning,
                     sectionHeaderText = stringResource(id = R.string.error_state_header),
                     sectionBodyText = results.errorMessage,
@@ -195,6 +200,7 @@ fun CaloriesScreenContent(
 
             ListState.Idle -> {
                 SectionSlot(
+                    modifier = Modifier.testTag("Idle state"),
                     icon = Icons.Rounded.Search,
                     sectionHeaderText = stringResource(id = R.string.empty_state_header),
                     sectionBodyText = stringResource(id = R.string.empty_state_text),
@@ -207,7 +213,9 @@ fun CaloriesScreenContent(
 
             ListState.Loading -> {
                 Column(
-                    modifier = modifier.fillMaxSize(),
+                    modifier = modifier
+                        .fillMaxSize()
+                        .testTag("Circular progress bar"),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
@@ -219,7 +227,9 @@ fun CaloriesScreenContent(
                 when (results.data) {
                     is ListSuccessState.Data -> {
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier
+                                .testTag("Results section")
+                                .fillMaxSize(),
                             verticalArrangement = Arrangement.spacedBy(Space12dp)
                         ) {
                             stickyHeader {
@@ -246,6 +256,7 @@ fun CaloriesScreenContent(
 
                     ListSuccessState.NoResults -> {
                         SectionSlot(
+                            modifier = Modifier.testTag("No Results state"),
                             icon = Icons.Rounded.Face,
                             sectionHeaderText = stringResource(id = R.string.no_results_header),
                             sectionBodyText = stringResource(id = R.string.no_results_text, state.searchParam),
