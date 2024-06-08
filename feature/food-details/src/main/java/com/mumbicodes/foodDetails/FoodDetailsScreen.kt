@@ -24,7 +24,7 @@ import com.mumbicodes.ui.presentation.theme.strongText
 
 @Composable
 fun FoodDetailsScreenRoute(
-    viewModel: CaloriesScreenViewModel,
+    viewModel: CaloriesScreenViewModel
 ) {
     val calorie by viewModel.calorieClicked.collectAsStateWithLifecycle()
 

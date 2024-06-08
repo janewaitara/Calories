@@ -27,4 +27,11 @@ android {
 dependencies {
     // Ktor
     implementation(libs.bundles.ktor)
+    testImplementation(libs.ktor.client.mock)
+
+    // coroutines
+    implementation(libs.kotlinx.coroutines)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    testImplementation(libs.junit)
 }
