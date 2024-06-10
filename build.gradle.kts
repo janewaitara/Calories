@@ -15,7 +15,7 @@ allprojects {
         android.set(false)
         verbose.set(false)
         filter {
-            exclude { element -> element.file.path.contains("generated/") }
+            exclude { element -> element.file.path.contains("**/generated/**") }
         }
         disabledRules.set(setOf("no-wildcard-imports"))
     }
