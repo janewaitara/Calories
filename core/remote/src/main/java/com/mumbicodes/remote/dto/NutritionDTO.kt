@@ -8,6 +8,8 @@ data class NutritionDTO(
     val items: List<CaloriesDTO>
 )
 
+/**
+ * Food composition data */
 @Serializable
 data class CaloriesDTO(
     val name: String,

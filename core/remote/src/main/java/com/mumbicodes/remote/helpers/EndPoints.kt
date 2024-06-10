@@ -1,5 +1,8 @@
 package com.mumbicodes.remote.helpers
 
+/**
+ * A sealed class that holds all our endpoints
+ * */
 sealed class EndPoints(private val path: String) {
 
     val url = buildString {
