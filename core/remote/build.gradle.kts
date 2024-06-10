@@ -29,6 +29,9 @@ android {
         getByName("debug") {
             buildConfigField("String", "key", key)
         }
+        getByName("release") {
+            buildConfigField("String", "key", key)
+        }
     }
 
     compileOptions {
